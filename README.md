@@ -25,6 +25,9 @@ python3 -m venv .venv
 source .venv/bin/activate   # On macOS/Linux
 .venv\Scripts\activate    # On Windows (Command Prompt)
 .venv\Scripts\Activate.ps1 # On Windows (PowerShell)
+
+# install requirements
+pip install -r requirements.txt
 ```
 ### **2. Check that default conformance config is correct
 
