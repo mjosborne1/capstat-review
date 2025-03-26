@@ -1,0 +1,26 @@
+{
+    "resourceConformance": {
+        "server": "SHALL",
+        "placer": "SHALL",
+        "filler": "SHALL",
+        "patient": "SHOULD"
+    },
+    "profileConformance": {
+        "server": "SHALL",
+        "placer": "SHALL",
+        "filler": "SHALL",
+        "patient": "SHALL"
+    },
+    "searchParams": {
+        "server": {"_id":"SHALL"},
+        "placer": {"_id":"MAY"},
+        "filler": {"_id": "MAY"},
+        "patient": {"_id":"MAY"}
+    },
+    "interaction": {
+        "server": {"read": "SHALL", "search-type": "SHALL", "update": "SHOULD", "create": "SHOULD"},
+        "placer": {"read": "SHOULD", "search-type": "SHOULD", "update": "SHOULD", "create": "SHOULD"},
+        "filler": {"read": "SHOULD", "search-type": "SHOULD"},
+        "patient": {"read": "SHOULD", "search-type": "SHOULD"}
+    }
+}
