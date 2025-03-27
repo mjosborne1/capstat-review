@@ -12,15 +12,13 @@ def extract_actor_name(filename):
   else:
     return None #Return None if the file does not end with .xml
 
-def getDefaultValue(actor, resource, element):
-    """ Given an actor and a resouce, return the default value for the element"""
 
-def process(xmlfile,output_dir):
+def process(xmlfile,actor,output_dir):
     """
     Process the capability statement file and write the summary to the csv file
     """
-    actor = extract_actor_name(xmlfile)
     if actor is None:
+        print("Error: No actor found in the file name.")
         return
     data_rows = []
     # Load the XML file
@@ -33,7 +31,7 @@ def process(xmlfile,output_dir):
         return
     
     # Load actor default configuration from JSON file
-    config_file = "./config/actor.json"
+    config_file = os.path.join(".","config","actor.json")
     try:
         with open(config_file, "r") as f:
             actor_config = json.load(f)

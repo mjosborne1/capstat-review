@@ -31,15 +31,23 @@ def main():
         default=datadir,
         help=f"Directory to store processed capability statement summaries (default: {datadir})"
     )
-
+    parser.add_argument(
+        "--actorlist",
+        default=None,
+        help=f"Actor list, comma separated (default: All Actors)"
+    )
     args = parser.parse_args()
     build_path(args.datadir)
 
-    # Read the xml files from the resources directory
+    # Read the xml files from the resources directory and filter on actorlist
+    actorlist = [actor.strip() for actor in args.actorlist.split(",")] if args.actorlist else None
+    capstatdir = args.capstatdir
     for file in os.listdir(args.capstatdir):
         if file.endswith(".xml"):           
-            xmlfile = os.path.join(args.capstatdir, file)
-            parse_capstats.process(xmlfile,args.datadir)
+            xmlfile = os.path.join(capstatdir, file)
+            actor = parse_capstats.extract_actor_name(xmlfile)
+            if actorlist is None or actor in actorlist:
+                parse_capstats.process(xmlfile,actor,args.datadir)
     
 if __name__ == "__main__":
     main()
