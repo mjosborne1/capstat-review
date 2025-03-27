@@ -34,7 +34,7 @@ def main():
     parser.add_argument(
         "--actorlist",
         default=None,
-        help=f"Actor list, comma separated (default: All Actors)"
+        help=f"Actor list, comma separated list of actors for filtering on (default: None which is All Actors)"
     )
     args = parser.parse_args()
     build_path(args.datadir)

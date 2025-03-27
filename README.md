@@ -41,7 +41,7 @@ Help on arguments can be displayed using
 ```sh
 python3 main.py -h
 
-usage: main.py [-h] [--capstatdir CAPSTATDIR] [--datadir DATADIR]
+usage: main.py [-h] [--capstatdir CAPSTATDIR] [--datadir DATADIR] [--actorlist ACTORLIST]
 
 Process FHIR CapabilityStatement XML files.
 
@@ -50,23 +50,29 @@ options:
   --capstatdir CAPSTATDIR
                         Directory containing CapabilityStatement XML files (default: /Users/osb074/Development/hl7au/mjo-au-fhir-erequesting/input/resources)
   --datadir DATADIR     Directory to store processed capability statement summaries (default: /Users/osb074/data/capstat-review)
+  --actorlist ACTORLIST
+                        Actor list, comma separated list of actors for filtering on (default: None which is All Actors)
 
-# example 1: using defaults on Linux/Mac
+# example 1: using defaults on Linux/Mac , this will process all capability statements in the default folders
 cd /path/to/your/script
 python3 main.py
 
-# example 2: setting command args on Linux/Mac
+# example 2: setting command args on Linux/Mac, filtering for the filler capability statement
 cd /path/to/your/script
-python3 main.py --capstatdir /Users/osb074/git/au-fhir-erequesting/input/resources --datadir /Users/osb074/data/igreviewsc
+python3 main.py --capstatdir /Users/osb074/git/au-fhir-erequesting/input/resources --datadir /Users/osb074/data/igreviewsc --actorlist "filler"
 
-# example 3: setting command args on Windows (untested)
+# example 3: setting command args on Linux/Mac, filtering for the filler and placer capability statement
+cd /path/to/your/script
+python3 main.py --capstatdir /Users/osb074/git/au-fhir-erequesting/input/resources --datadir /Users/osb074/data/igreviewsc --actorlist "filler,placer"
+
+# example 4: setting command args on Windows (untested)
 cd /path/to/your/script
 python3 main.py --capstatdir C:\Users\Osb074\git\au-fhir-erequesting\input\resources --datadir C:\Users\Osb074\data\igreviews
 
 ```
 ### **4. Check for errors
 
-Example output with no errors:
+Example output with no errors using default arguments, no filtering:
 ```
 Processed au-erequesting-filler.xml and wrote to /Users/osb074/data/capstat-review/filler.tsv
 Processed au-erequesting-placer.xml and wrote to /Users/osb074/data/capstat-review/placer.tsv
